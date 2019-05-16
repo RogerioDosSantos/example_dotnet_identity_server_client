@@ -1,0 +1,50 @@
+# Build Linux
+
+## Arguments / Environment Variables Used
+### proxy_url: URL of the proxy that should be used during the build. E.g.: http://gateway.zscaler.net:9480
+
+## Stage
+ARG stage_image="example_identity_server_stage:linux"
+FROM "${stage_image}" as stage
+
+## Build
+FROM microsoft/dotnet:2.2-sdk AS build
+WORKDIR /workspace
+
+### Install and Configure ZScale Certificate
+ARG proxy_url=""
+ENV http_proxy="${proxy_url}"
+ENV https_proxy="${proxy_url}"
+COPY --from=stage /workspace/zscale/zscale.crt /usr/local/share/ca-certificates
+RUN echo "*** Install and Configure ZScale Certificate" \
+  && echo "HTTP Proxy: ${http_proxy}" \
+  && echo "HTTPS Proxy: ${https_proxy}" \
+  && update-ca-certificates \
+  && echo "*** Install and Configure ZScale Certificate - DONE" 
+
+### Compile Project
+#### Note: We restore and build in two steps so we profit the docker cache mechanism to compile faster
+COPY ./src/identity_server.sln /workspace/src/identity_server.sln
+COPY ./src/server/server.csproj /workspace/src/server/server.csproj
+RUN echo "*** Getting project dependencies" \
+  && cd /workspace/src \
+  && dotnet restore \
+  && echo "*** Getting project dependencies - DONE" 
+COPY ./src /workspace/src
+RUN echo "*** Compiling project" \
+  && cd /workspace/src \
+  && dotnet publish -c Release -o /workspace/stage/release \
+  && echo "*** Compiling project - DONE" 
+
+## Release
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS release
+WORKDIR /workspace
+
+### Install Release 
+COPY --from=build /workspace/stage/release /workspace/bin
+EXPOSE 80
+EXPOSE 443
+ENTRYPOINT ["dotnet", "/workspace/bin/server.dll"]
+
+
+

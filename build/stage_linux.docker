@@ -1,0 +1,10 @@
+# Builder Linux
+
+## Stage
+FROM alpine:3.8 AS builder
+WORKDIR /workspace
+
+### Proxy Certificate
+ADD https://github.com/RogerioDosSantos/devops_machines/releases/download/dependencies/zscale.crt /workspace/zscale/zscale.crt
+
+

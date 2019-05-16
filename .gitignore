@@ -1,0 +1,6 @@
+
+tags
+.vs/
+src/server/bin/
+src/server/obj/
+src/server/server.csproj.user

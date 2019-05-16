@@ -1,0 +1,27 @@
+# Build (Linux)
+
+## Environment Variables Used
+### branch: Git source branch. E.g.: main
+### build_id: ID of the build. E.g.: 0000
+### proxy_url: URL of the proxy that should be used during the build. E.g.: http://gateway.zscaler.net:9480
+### registry: Docker registry. E.g.: rogersantos
+
+version: "3"
+services:
+
+  stage:
+    build:
+      context: ./
+      dockerfile: ./stage_linux.docker
+    image: "identity_server_stage:linux"
+
+  server:
+    build:
+      context: ../
+      dockerfile: ./build/build_server_linux.docker
+      args:
+        proxy_url: "${proxy_url}"
+    image: "${registry}/identity_server_example_server:linux_${branch}_${build_id}"
+    depends_on: 
+      - stage
+
