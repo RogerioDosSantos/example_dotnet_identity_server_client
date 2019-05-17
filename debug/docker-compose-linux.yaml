@@ -29,3 +29,16 @@ services:
     ports:
       - "8000:80"
 
+  client:
+    build:
+      context: ../
+      dockerfile: ./build/build_client_linux.docker
+      args:
+        proxy_url: "${proxy_url}"
+    image: "${registry}/example_identity_server_client:linux_${branch}_${build_id}"
+    # depends_on: 
+    #   - stage
+    stdin_open: true
+    tty: true
+    ports:
+      - "8001:80"

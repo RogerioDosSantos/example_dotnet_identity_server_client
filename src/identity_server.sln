@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "server", "server\server.csproj", "{0F5D0791-EAB0-4CDD-93FB-798463477BF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "server", "server\server.csproj", "{9BBF6E91-1913-4F6D-8930-A792445187F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "client", "client\client.csproj", "{2ACD278C-3380-4861-974C-50F10B55642C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0F5D0791-EAB0-4CDD-93FB-798463477BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F5D0791-EAB0-4CDD-93FB-798463477BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F5D0791-EAB0-4CDD-93FB-798463477BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F5D0791-EAB0-4CDD-93FB-798463477BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BBF6E91-1913-4F6D-8930-A792445187F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BBF6E91-1913-4F6D-8930-A792445187F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BBF6E91-1913-4F6D-8930-A792445187F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BBF6E91-1913-4F6D-8930-A792445187F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ACD278C-3380-4861-974C-50F10B55642C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ACD278C-3380-4861-974C-50F10B55642C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ACD278C-3380-4861-974C-50F10B55642C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ACD278C-3380-4861-974C-50F10B55642C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AC620138-ADDB-4494-8413-323068E25ED9}
+		SolutionGuid = {0A4E49DC-2F21-4178-8A7E-540575B70E1C}
 	EndGlobalSection
 EndGlobal

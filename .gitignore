@@ -4,3 +4,6 @@ tags
 src/server/bin/
 src/server/obj/
 src/server/server.csproj.user
+src/client/bin/
+src/client/obj/
+src/client/client.csproj.user
