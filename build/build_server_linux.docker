@@ -24,12 +24,12 @@ RUN echo "*** Install and Configure ZScale Certificate" \
 
 ### Compile Project
 #### Note: We restore and build in two steps so we profit the docker cache mechanism to compile faster
-COPY ./src/server/server.csproj /workspace/src/server.csproj
+COPY ./src/IdentityServer/IdentityServer.csproj /workspace/src/IdentityServer.csproj
 RUN echo "*** Getting project dependencies" \
   && cd /workspace/src \
   && dotnet restore \
   && echo "*** Getting project dependencies - DONE" 
-COPY ./src/server /workspace/src
+COPY ./src/IdentityServer /workspace/src
 RUN echo "*** Compiling project" \
   && cd /workspace/src \
   && dotnet publish -c Release -o /workspace/stage/release \
@@ -43,7 +43,7 @@ WORKDIR /workspace
 COPY --from=build /workspace/stage/release /workspace/bin
 EXPOSE 80
 EXPOSE 443
-ENTRYPOINT ["dotnet", "/workspace/bin/server.dll"]
+ENTRYPOINT ["dotnet", "/workspace/bin/IdentityServer.dll"]
 
 
 

@@ -34,7 +34,9 @@ namespace IdentityServer
             }
             else
             {
-                throw new Exception("need to configure key material");
+                //TODO(Roger) - Remove and Create the key
+                builder.AddDeveloperSigningCredential();
+                //throw new Exception("need to configure key material");
             }
         }
 

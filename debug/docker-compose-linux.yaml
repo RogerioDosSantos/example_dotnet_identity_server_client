@@ -9,11 +9,11 @@
 version: "3"
 services:
 
-  # stage:
-  #   build:
-  #     context: ../
-  #     dockerfile: ./build/stage_linux.docker
-  #   image: "example_identity_server_stage:linux"
+  stage:
+    build:
+      context: ../
+      dockerfile: ./build/stage_linux.docker
+    image: "example_identity_server_stage:linux"
 
   server:
     build:
@@ -22,12 +22,31 @@ services:
       args:
         proxy_url: "${proxy_url}"
     image: "${registry}/example_identity_server_server:linux_${branch}_${build_id}"
-    # depends_on: 
-    #   - stage
+    depends_on: 
+      - stage
     stdin_open: true
     tty: true
     ports:
       - "8000:80"
+    # To check if is running: http://localhost:8000/.well-known/openid-configuration => Should return json with entrypoints
+
+  api:
+    build:
+      context: ../
+      dockerfile: ./build/build_api_linux.docker
+      args:
+        proxy_url: "${proxy_url}"
+    image: "${registry}/example_identity_server_api:linux_${branch}_${build_id}"
+    depends_on: 
+      - stage
+      - server
+    stdin_open: true
+    tty: true
+    ports:
+      - "8001:80"
+    environment:
+      - identity_server_url=http://server
+    # To check if is running: http://localhost:8001/identity => Should return 401: API requires a credential
 
   client:
     build:
@@ -36,9 +55,15 @@ services:
       args:
         proxy_url: "${proxy_url}"
     image: "${registry}/example_identity_server_client:linux_${branch}_${build_id}"
-    # depends_on: 
-    #   - stage
+    depends_on: 
+      - stage
+      - server
+      - api
     stdin_open: true
     tty: true
     ports:
-      - "8001:80"
+      - "8002:80"
+    environment:
+      - identity_server_url=http://server
+      - api_url=http://api
+      - requite_https=false

@@ -20,10 +20,13 @@ namespace Api
             .AddJsonFormatters();
 
             //Adds the authentication services to DI and configures "Bearer" as the default scheme
+            string identityServerUrl = Environment.GetEnvironmentVariable("identity_server_url");
+            Console.WriteLine("\n00 - Current Configuration:");
+            Console.WriteLine("- Identity Server URL (identity_server_url): " + identityServerUrl);
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
-                {       
-                    options.Authority = "http://localhost:5000"; //IdentityServer Address
+                {                    
+                    options.Authority = identityServerUrl; //IdentityServer Address
                     options.RequireHttpsMetadata = false;
                     options.Audience = "api1";
                 });
