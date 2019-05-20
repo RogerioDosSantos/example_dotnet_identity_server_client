@@ -30,11 +30,17 @@ namespace Client
                 string identityServerUrl = Environment.GetEnvironmentVariable("identity_server_url");
                 string apiUrl = Environment.GetEnvironmentVariable("api_url");
                 bool requireHttps = Environment.GetEnvironmentVariable("requite_https") == "true";
+                string clientId = Environment.GetEnvironmentVariable("client_id");
+                string clientSecret = Environment.GetEnvironmentVariable("client_secret");
+                string scope = Environment.GetEnvironmentVariable("scope");
                 Console.WriteLine("\n00 - Current Configuration:");
                 Console.WriteLine("- Identity Server URL (identity_server_url): " + identityServerUrl);
                 Console.WriteLine("- API URL (api_url): " + identityServerUrl);
                 Console.WriteLine("- Require HTTPS (requite_https): " + requireHttps.ToString());
-            
+                Console.WriteLine("- Client ID (client_id): " + clientId);
+                Console.WriteLine("- Client Secret (client_secret): " + clientSecret);
+                Console.WriteLine("- Scope (scope): " + scope);
+
                 // discover endpoints from metadata
                 Console.WriteLine("\n01 - Discovering Entrypoints:");
                 DiscoveryResponse discoveryResponse = null;
@@ -66,9 +72,9 @@ namespace Client
                 var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
                 {
                     Address = discoveryResponse.TokenEndpoint,
-                    ClientId = "client",
-                    ClientSecret = "secret",
-                    Scope = "api1"
+                    ClientId = clientId,
+                    ClientSecret = clientSecret,
+                    Scope = scope
                 });
 
                 if (tokenResponse.IsError)

@@ -67,3 +67,6 @@ services:
       - identity_server_url=http://server
       - api_url=http://api
       - requite_https=false
+      - client_id=client
+      - client_secret=secret
+      - scope=api1

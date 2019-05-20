@@ -25,7 +25,7 @@ docker-compose -f ./docker-compose-linux.yaml down
 
 As result you should see every 5 seconds the client getting the token from the IdentityServer and Consult the Api using the token:
 
-![](http://tinyurl.com/yyu547py)
+![](http://tinyurl.com/y2xrs87y)
 
 **Note 01**: You can change both the API and Client to connect to other IdentityServer. To do it change the following environment variables in the *docker-compose-linux.yaml*:
 
