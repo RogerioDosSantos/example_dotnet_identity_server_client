@@ -72,11 +72,11 @@ dotnet add package IdentityModel
 
 #### IdentityServer (Server)
 
-- Discovery document: [http://localhost:5000/.well-known/openid-configuration](http://localhost:5000/.well-known/openid-configuration)
+- Discovery document: [http://localhost:8000/.well-known/openid-configuration](http://localhost:8000/.well-known/openid-configuration)
 
-#### API (Client)
+#### API 
 
-- Identity Validation: [http://localhost:5001/identity](http://localhost:5001/identity)
+- Identity Validation: [http://localhost:8001/identity](http://localhost:8001/identity)
   - 401: API requires a credential
 
 
