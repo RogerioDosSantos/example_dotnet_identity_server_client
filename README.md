@@ -34,8 +34,6 @@ As result you should see every 5 seconds the client getting the token from the I
 
 **Note 02**: If you are not using proxy, you can change the proxy environment variable information (*xx*) in the *./debug/.env* file.
 
-### Provide Anote
-
 ## Development Notes
 
 ### Install Templates 
@@ -78,7 +76,7 @@ dotnet add package IdentityModel
 
 #### API (Client)
 
-- xxx: [http://localhost:5001/identity](http://localhost:5001/identity)
+- Identity Validation: [http://localhost:5001/identity](http://localhost:5001/identity)
   - 401: API requires a credential
 
 
