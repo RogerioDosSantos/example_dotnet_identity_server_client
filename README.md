@@ -27,10 +27,12 @@ As result you should see every 5 seconds the client getting the token from the I
 
 ![](http://tinyurl.com/yyu547py)
 
-**Note**: You can change both the API and Client to connect to other IdentityServer. To do it change the following environment variables in the *docker-compose-linux.yaml*:
+**Note 01**: You can change both the API and Client to connect to other IdentityServer. To do it change the following environment variables in the *docker-compose-linux.yaml*:
 
 - identity_server_url=<desired_identity_server>
 - requite_https=<true_if_the_identity_server_uses_http>
+
+**Note 02**: If you are not using proxy, you can change the proxy environment variable information (*xx*) in the *./debug/.env* file.
 
 ### Provide Anote
 
