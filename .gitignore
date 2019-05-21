@@ -4,3 +4,4 @@ tags
 src/**/bin/
 src/**/obj/
 src/**/*.csproj.user
+src/IdentityServer/identityserver4_log.txt

@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "Client": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "api_url": "http://localhost:8001",
+        "client_secret": "secret",
+        "client_id": "client",
+        "identity_server_url": "http://localhost:8000",
+        "requite_https": "false",
+        "scope": "api1"
+      }
+    }
+  }
+}
