@@ -39,6 +39,12 @@ RUN echo "*** Compiling project" \
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS release
 WORKDIR /workspace
 
+### Install and Configure ZScale Certificate
+COPY --from=stage /workspace/zscale/zscale.crt /usr/local/share/ca-certificates
+RUN echo "*** Install and Configure ZScale Certificate" \
+  && update-ca-certificates \
+  && echo "*** Install and Configure ZScale Certificate - DONE" 
+
 ### Install Release 
 COPY --from=build /workspace/stage/release /workspace/bin
 EXPOSE 80

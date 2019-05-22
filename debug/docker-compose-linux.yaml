@@ -20,9 +20,9 @@ services:
       context: ../
       dockerfile: ./build/build_server_linux.docker
       args:
-        proxy_url: "${proxy_url}"
+        proxy_url: "${build_proxy_url}"
     image: "${registry}/example_identity_server_server:linux_${branch}_${build_id}"
-    depends_on: 
+    depends_on:
       - stage
     stdin_open: true
     tty: true
@@ -35,9 +35,9 @@ services:
       context: ../
       dockerfile: ./build/build_api_linux.docker
       args:
-        proxy_url: "${proxy_url}"
+        proxy_url: "${build_proxy_url}"
     image: "${registry}/example_identity_server_api:linux_${branch}_${build_id}"
-    depends_on: 
+    depends_on:
       - stage
       - server
     stdin_open: true
@@ -45,7 +45,9 @@ services:
     ports:
       - "8001:80"
     environment:
-      - identity_server_url=http://server
+      - proxy_url=${proxy_url}
+      - identity_server_url=${identity_server_url}
+      - identity_server_audience=${identity_server_audience}
     # To check if is running: http://localhost:8001/identity => Should return 401: API requires a credential
 
   client:
@@ -53,9 +55,9 @@ services:
       context: ../
       dockerfile: ./build/build_client_linux.docker
       args:
-        proxy_url: "${proxy_url}"
+        proxy_url: "${build_proxy_url}"
     image: "${registry}/example_identity_server_client:linux_${branch}_${build_id}"
-    depends_on: 
+    depends_on:
       - stage
       - server
       - api
@@ -64,9 +66,10 @@ services:
     ports:
       - "8002:80"
     environment:
-      - identity_server_url=http://server
+      - proxy_url=${proxy_url}
+      - identity_server_url=${identity_server_url}
+      - identity_server_require_https=${identity_server_require_https}
+      - identity_server_client_id=${identity_server_client_id}
+      - identity_server_client_secret=${identity_server_client_secret}
+      - identity_server_scope=${identity_server_scope}
       - api_url=http://api
-      - requite_https=false
-      - client_id=client
-      - client_secret=secret
-      - scope=api1

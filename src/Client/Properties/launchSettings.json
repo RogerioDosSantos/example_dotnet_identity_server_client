@@ -3,12 +3,14 @@
     "Client": {
       "commandName": "Project",
       "environmentVariables": {
-        "api_url": "http://localhost:8001",
-        "client_secret": "secret",
-        "client_id": "client",
+        "proxy_url": "",
         "identity_server_url": "http://localhost:8000",
-        "requite_https": "false",
-        "scope": "api1"
+        "identity_server_audience": "api1",
+        "identity_server_client_id": "client",
+        "identity_server_client_secret": "secret",
+        "identity_server_scope": "api1",
+        "identity_server_require_https": "false",
+        "api_url": "http://localhost:8001"
       }
     }
   }

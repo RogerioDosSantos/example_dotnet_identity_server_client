@@ -3,8 +3,9 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:8001"
-      //"sslPort": 44343
+      "applicationUrl": "http://localhost:8001",
+      "identity_server_url": "http://localhost:8000",
+      "identity_server_audience": "api1"
     }
   },
   "profiles": {
@@ -13,7 +14,8 @@
       "commandName": "IISExpress",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "identity_server_url": "http://localhost:8000"
+        "identity_server_url": "http://localhost:8000",
+        "identity_server_audience": "api1"
       },
       "launchBrowser": true
     },
@@ -22,7 +24,9 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:8001",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "identity_server_url": "http://localhost:8000",
+        "identity_server_audience": "api1"
       }
     }
   }
