@@ -22,8 +22,8 @@ namespace Api
             Console.WriteLine("- Identity Server Audience (identity_server_audience): " + identityServerAudience);
 
             services.AddMvcCore()
-            .AddAuthorization()
-            .AddJsonFormatters();
+                .AddAuthorization()
+                .AddJsonFormatters();
            
             //Adds the authentication services to DI and configures "Bearer" as the default scheme
             services.AddAuthentication("Bearer")
